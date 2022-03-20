@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <%= csrf_meta_tag() %>
+    <%= live_title_tag assigns[:page_title] || "MoneyGuard", suffix: " · Phoenix Framework" %>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/css/bootstrap.min.css")}/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/fonts/fontawesome-all.min.css")}/>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/fonts/font-awesome.min.css")}/>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/fonts/material-icons.min.css")}/>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/fonts/simple-line-icons.min.css")}/>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/fonts/fontawesome5-overrides.min.css")}/>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/css/fab.css")}/>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/css/page.css")}/>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+  </head>
+  <body id="page-top">
+    <div id="wrapper">
+      <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+          <div class="container-fluid d-flex flex-column p-0">
+              <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                  <div class="sidebar-brand-icon rotate-n-15"><i class="far fa-money-bill-alt"></i></div>
+                  <div class="sidebar-brand-text mx-3"><span>Finanças</span></div>
+              </a>
+              <hr class="sidebar-divider my-0">
+              <ul class="navbar-nav text-light" id="accordionSidebar">
+                  <li class="nav-item"><a class="nav-link active" href="/"><i
+                              class="fas fa-tachometer-alt"></i><span>Página Inicial</span></a></li>
+                  <li class="nav-item"></li>
+                  <li class="nav-item"><a class="nav-link" href="/"><i
+                              class="far fa-user-circle"></i><span>Login</span></a></li>
+                  <li class="nav-item"><a class="nav-link" href="/"><i
+                              class="fas fa-user-circle"></i><span>Register</span></a></li>
+              </ul>
+              <div class="text-center d-none d-md-inline" ></div>
+          </div>
+      </nav>
+      <%= @inner_content%>
+    </div>
+    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/js/bootstrap.min.js")}></script>
+    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/js/theme.js")}></script>
+  </body>
+</html>

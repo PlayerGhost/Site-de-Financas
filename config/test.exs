@@ -5,23 +5,23 @@ import Config
 # The MIX_TEST_PARTITION environment variable can be used
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
-config :finances, Finances.Repo,
+config :money_guard, MoneyGuard.Repo,
   username: "postgres",
   password: "postgres",
-  database: "finances_test#{System.get_env("MIX_TEST_PARTITION")}",
+  database: "money_guard_test#{System.get_env("MIX_TEST_PARTITION")}",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :finances, FinancesWeb.Endpoint,
+config :money_guard, MoneyGuardWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "G4j5ROlRB/P/4aONTWvY8kagUtabDiqcQo5GofaQa7kp9jVetqveepfB9FYxOWy+",
+  secret_key_base: "7ksJxBruLeL0rpuVUbxo06W4D3VHSotr1us6SuDZCyG+7nqVrNWKyVx/gEdG+Tpn",
   server: false
 
 # In test we don't send emails.
-config :finances, Finances.Mailer, adapter: Swoosh.Adapters.Test
+config :money_guard, MoneyGuard.Mailer, adapter: Swoosh.Adapters.Test
 
 # Print only warnings and errors during test
 config :logger, level: :warn

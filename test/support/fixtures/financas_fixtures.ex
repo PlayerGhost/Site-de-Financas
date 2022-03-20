@@ -1,7 +1,7 @@
-defmodule Finances.FinancasFixtures do
+defmodule MoneyGuard.FinancasFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `Finances.Financas` context.
+  entities via the `MoneyGuard.Financas` context.
   """
 
   @doc """
@@ -14,7 +14,7 @@ defmodule Finances.FinancasFixtures do
         nome: "some nome",
         valor: 42
       })
-      |> Finances.Financas.create_receita()
+      |> MoneyGuard.Financas.create_receita()
 
     receita
   end
@@ -29,7 +29,7 @@ defmodule Finances.FinancasFixtures do
         nome: "some nome",
         valor: 42
       })
-      |> Finances.Financas.create_despesa()
+      |> MoneyGuard.Financas.create_despesa()
 
     despesa
   end

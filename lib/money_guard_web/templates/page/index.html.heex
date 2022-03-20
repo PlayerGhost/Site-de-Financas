@@ -1,0 +1,172 @@
+
+<div class="d-flex flex-column" id="content-wrapper">
+        <div id="content">
+            <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                <div class="container-fluid">
+                    <ul class="navbar-nav flex-nowrap ms-auto">
+                        <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i
+                                    class="fas fa-search"></i></a>
+                            <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
+                                <form class="me-auto navbar-search w-100">
+                                    <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
+                                        <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                        <div class="d-none d-sm-block topbar-divider"></div>
+                        <li class="nav-item dropdown no-arrow">
+                            <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span
+                                        class="d-none d-lg-inline me-2 text-gray-600 small">Valerie Luna</span></a>
+                                <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                                <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="container-fluid">
+                <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                    <h3 class="text-dark mb-0">Página Inicial</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <div class="card shadow mb-4"></div>
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="text-primary fw-bold m-0">Receitas</h6>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                            <%= for receita <- @receitas do %>
+                                <li class="list-group-item">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col me-2">
+                                            <h6 class="mb-0"><strong><%= receita.nome %></strong></h6><span class="text-xs"><%= receita.valor %></span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <button class="btn btn-primary btn-icon-split" type="button" data-bs-target="#modalEditarReceita" data-bs-toggle="modal">
+                                                <%= link to: Routes.receita_path(@conn, :edit, receita) do %> <span class="text-white-50 icon"><i class="material-icons" style="width: 22px;height: 22px;">edit</i></span> <% end %>
+                                            </button>
+                                        </div>
+                                                        
+                                        <div class="col-auto">
+                                            <button class="btn btn-danger btn-icon-split" type="button">
+                                                <%= link to: Routes.receita_path(@conn, :delete, receita), method: :delete do %> <span class="text-white-50 icon"><i class="material-icons" style="width: 22px;height: 22px;">delete</i></span> <% end %>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                            <% end %>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <div class="card shadow mb-4"></div>
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="text-primary fw-bold m-0">Despesas</h6>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                            <%= for despesa <- @despesas do %>
+                                <li class="list-group-item">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col me-2">
+                                            <h6 class="mb-0"><strong><%= despesa.nome %></strong></h6><span class="text-xs"><%= despesa.valor %></span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <button class="btn btn-primary btn-icon-split" type="button" data-bs-target="#modalEditarReceita" data-bs-toggle="modal">
+                                                <%= link to: Routes.despesa_path(@conn, :edit, despesa) do %> <span class="text-white-50 icon"><i class="material-icons" style="width: 22px;height: 22px;">edit</i></span> <% end %>
+                                            </button>
+                                        </div>
+                                                        
+                                        <div class="col-auto">
+                                            <button class="btn btn-danger btn-icon-split" type="button">
+                                                <%= link to: Routes.despesa_path(@conn, :delete, despesa), method: :delete do %> <span class="text-white-50 icon"><i class="material-icons" style="width: 22px;height: 22px;">delete</i></span> <% end %>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                            <% end %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="bg-white sticky-footer">
+            <div class="container my-auto">
+                <div class="text-center my-auto copyright"><span>Copyright © Álbero Ítalo e Igor Santos - 2021</span>
+                </div>
+            </div>
+        </footer>
+</div>
+
+<a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+
+<div class="modal fade" role="dialog" tabindex="-1" id="modalNewReceita">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="container">
+                    <div class="card shadow-lg o-hidden border-0 my-5">
+                        <div class="card-body p-0">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="p-5">
+                                        <div class="text-center">
+                                            <h4 class="text-center text-dark mb-4" style="font-size: 22px;">Adicionar Receita</h4>
+                                        </div>
+                                        <%= render MoneyGuardWeb.ReceitaView, "form.html", Map.put(assigns, :action, Routes.receita_path(@conn, :create)) %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<div class="modal fade" role="dialog" tabindex="-1" id="modalNewDespesa">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="container">
+                    <div class="card shadow-lg o-hidden border-0 my-5">
+                        <div class="card-body p-0">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="p-5">
+                                        <div class="text-center">
+                                            <h4 class="text-center text-dark mb-4" style="font-size: 22px;">Adicionar Despesa</h4>
+                                        </div>
+                                        <%= render MoneyGuardWeb.DespesaView, "form.html", Map.put(assigns, :action, Routes.despesa_path(@conn, :create)) %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<div class="fab-container">
+    <div class="fab fab-icon-holder">
+        <i class="material-icons">add</i>
+    </div>
+
+    <ul class="fab-options">
+        <li>
+            <span class="fab-label">Adicionar Receita</span>
+            <div class="fab-icon-holder" style="background: green;" data-bs-target="#modalNewReceita" data-bs-toggle="modal" Routes.receita_path(@conn, :new)>
+                <i class="material-icons">attach_money</i>
+            </div>
+        </li>
+        <li>
+            <span class="fab-label">Adicionar Despesa</span>
+            <div class="fab-icon-holder" style="background: red;" data-bs-target="#modalNewDespesa" data-bs-toggle="modal">
+                <i class="material-icons">money_off</i>
+            </div>
+        </li>
+    </ul>
+</div>

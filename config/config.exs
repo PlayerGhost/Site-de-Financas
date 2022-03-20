@@ -7,15 +7,15 @@
 # General application configuration
 import Config
 
-config :finances,
-  ecto_repos: [Finances.Repo]
+config :money_guard,
+  ecto_repos: [MoneyGuard.Repo]
 
 # Configures the endpoint
-config :finances, FinancesWeb.Endpoint,
+config :money_guard, MoneyGuardWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: FinancesWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: Finances.PubSub,
-  live_view: [signing_salt: "fEEwCbxE"]
+  render_errors: [view: MoneyGuardWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: MoneyGuard.PubSub,
+  live_view: [signing_salt: "53XUp/JV"]
 
 # Configures the mailer
 #
@@ -24,7 +24,7 @@ config :finances, FinancesWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :finances, Finances.Mailer, adapter: Swoosh.Adapters.Local
+config :money_guard, MoneyGuard.Mailer, adapter: Swoosh.Adapters.Local
 
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
@@ -50,3 +50,4 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
+

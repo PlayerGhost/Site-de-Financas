@@ -20,10 +20,7 @@ erl_crash.dump
 *.ez
 
 # Ignore package tarball (built via "mix hex.build").
-finances-*.tar
-
-# Ignore assets that are produced by build tools.
-/priv/static/assets/
+money_guard-*.tar
 
 # Ignore digested assets cache.
 /priv/static/cache_manifest.json

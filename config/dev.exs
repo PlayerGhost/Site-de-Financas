@@ -1,10 +1,10 @@
 import Config
 
 # Configure your database
-config :finances, Finances.Repo,
+config :money_guard, MoneyGuard.Repo,
   username: "postgres",
   password: "1322",
-  database: "finances_dev",
+  database: "money_guard_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -15,17 +15,22 @@ config :finances, Finances.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with esbuild to bundle .js and .css sources.
-config :finances, FinancesWeb.Endpoint,
+config :money_guard, MoneyGuardWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "vm3nTQDEsMYahmGbemtM2psCR496sz02XJY9DoB5sXqIXi6WcNGgM6dq710FSVBP",
+  secret_key_base: "P/fSsjlXp8Ri6Oo7bL6XU7aoj82QxU/BeHN1v5c5AjS+LS83FABw7HaA6/INqzVA",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    sass: {
+      DartSass,
+      :install_and_run,
+      [:default, ~w(--embed-source-map --source-map-urls=absolute --watch)]
+    }
   ]
 
 # ## SSL Support
@@ -53,13 +58,13 @@ config :finances, FinancesWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :finances, FinancesWeb.Endpoint,
+config :money_guard, MoneyGuardWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/finances_web/(live|views)/.*(ex)$",
-      ~r"lib/finances_web/templates/.*(eex)$"
+      ~r"lib/money_guard_web/(live|views)/.*(ex)$",
+      ~r"lib/money_guard_web/templates/.*(eex)$"
     ]
   ]
 

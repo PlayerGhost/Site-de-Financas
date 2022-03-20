@@ -1,9 +1,9 @@
-defmodule Finances.MixProject do
+defmodule MoneyGuard.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :finances,
+      app: :money_guard,
       version: "0.1.0",
       elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -19,7 +19,7 @@ defmodule Finances.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Finances.Application, []},
+      mod: {MoneyGuard.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -48,7 +48,8 @@ defmodule Finances.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      {:dart_sass, "~> 0.2", runtime: Mix.env() == :dev}
     ]
   end
 
@@ -64,7 +65,12 @@ defmodule Finances.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.deploy": ["esbuild default --minify", "phx.digest"]
+      "assets.deploy": ["esbuild default --minify", "phx.digest"],
+      "assets.deploy": [
+        "esbuild default --minify",
+        "sass default --no-source-map --style=compressed",
+        "phx.digest"
+      ]
     ]
   end
 end

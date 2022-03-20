@@ -1,4 +1,4 @@
-defmodule Finances.DataCase do
+defmodule MoneyGuard.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -10,7 +10,7 @@ defmodule Finances.DataCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use Finances.DataCase, async: true`, although
+  by setting `use MoneyGuard.DataCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -18,17 +18,17 @@ defmodule Finances.DataCase do
 
   using do
     quote do
-      alias Finances.Repo
+      alias MoneyGuard.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Finances.DataCase
+      import MoneyGuard.DataCase
     end
   end
 
   setup tags do
-    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(Finances.Repo, shared: not tags[:async])
+    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(MoneyGuard.Repo, shared: not tags[:async])
     on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
     :ok
   end

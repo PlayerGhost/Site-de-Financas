@@ -1,4 +1,4 @@
-# Finances
+# MoneyGuard
 
 To start your Phoenix server:
 
